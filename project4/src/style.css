@@ -1,0 +1,26 @@
+.summer
+{
+    background:url("./images/sunset-3325080_1920.jpg");
+    background-position: center;
+    background-size: cover;
+    height:625px;
+    color:white;
+}
+
+.monsoon
+{
+    background:url("./images/girl-1438138_1920.jpg");
+    background-position: center;
+    background-size: cover;
+    height:625px;
+    color:white;
+}
+
+.winter
+{
+    background:url("./images/winter-1127201_1920.jpg");
+    background-position: center;
+    background-size: cover;
+    height:625px;
+    color:white;
+}
