@@ -1,0 +1,25 @@
+.main-bg
+{
+    background-image: url("./images/fb.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height:640px;
+}
+
+.container
+{
+    padding:20px;
+}
+
+.six.wide.column
+{
+    background: white;
+    padding: 30px!important;
+    
+}
+
+.srv-validation-message
+{
+    color:red
+}
