@@ -1,0 +1,33 @@
+.main-bg
+{
+    background-image: url("./images/loginBackground.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height:625px;
+}
+
+.container
+{
+    padding:20px;
+}
+
+.form
+{
+    background: white;
+    padding: 30px!important;
+    
+}
+.ui.grid
+{
+    justify-content: center;
+}
+.srv-validation-message
+{
+    color:red
+}
+.ui.fluid.button
+{
+color: white;
+    background: #261849;
+}
