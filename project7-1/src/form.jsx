@@ -1,10 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
 import { useFormik } from 'formik';
 
-  const Form = () => {
-    const formik = useFormik({
-      initialValues: {
-        firstname:'',
+  class Form extends Component {
+    constructor(props)
+    {
+      super(props);
+      this.state={
+        formValues:{
+            firstname:'',
             lastname:'',
             mobileno:'',
             UserLogin:{
@@ -14,91 +17,152 @@ import { useFormik } from 'formik';
             gender:'',
             country:'',
             dob:''
-      },
-      onSubmit: values => {
-        alert(JSON.stringify(values, null, 2));
-        console.log("form data",values);
-      },
-      validate: values => {
-        const errors = {};
-        if (!values.firstName) {
+        },
+        formErrors:{
+          firstname:'',
+          lastname:'',
+          mobileno:'',
+          UserLogin:{
+              email:'',
+              password:''
+          },
+          gender:'',
+          country:'',
+          dob:''
+        },
+        formValidity:{
+          firstname:false,
+          lastname:false,
+          mobileno:false,
+          UserLogin:{
+              email:false,
+              password:false
+          },
+          gender:false,
+          country:false,
+          dob:false
+        },
+        isSubmitting: false
+      };
+    }
+    
+    handleSubmit=(e)=>{
+      e.preventDefault();
+      const {formValues} = this.state;
+          let data={
+              firstname:formValues.firstname,
+              lastname:formValues.lastname,
+              mobileno:formValues.mobileno,
+              UserLogin:{
+                  email:formValues.UserLogin.email,
+                  password:formValues.UserLogin.password
+              },
+              gender:formValues.gender,
+              country:formValues.country,
+              dob:formValues.dob
+          }
+          console.log(data);
+          alert("Form successfully submited");
+          const errors = {};
+        if (!formValues.firstName) {
           errors.firstName = 'Required';
-        } else if (values.firstName.length > 15) {
+        } else if (formValues.firstName.length > 15) {
           errors.firstName = 'Must be 15 characters or less';
         }
       
-        if (!values.lastName) {
+        if (!formValues.lastName) {
           errors.lastName = 'Required';
-        } else if (values.lastName.length > 20) {
+        } else if (formValues.lastName.length > 20) {
           errors.lastName = 'Must be 20 characters or less';
         }
     
-        if (!values.mobileno) {
+        if (!formValues.mobileno) {
             errors.mobileno = 'Required';
-          } else if (values.mobileno.length <= 10) {
+          } else if (formValues.mobileno.length <= 10) {
             errors.mobileno = 'mobile number should be 10 digits';
           }
     
-        if (!values.UserLogin.email) {
+        if (!formValues.UserLogin.email) {
           errors.email = 'Required';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.UserLogin.email)) {
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.UserLogin.email)) {
           errors.email = 'Invalid email address';
         }
     
-        if (!values.UserLogin.password) {
+        if (!formValues.UserLogin.password) {
             errors.password = 'Required';
-          } else if (values.UserLogin.password.length > 20) {
+          } else if (formValues.UserLogin.password.length > 20) {
             errors.password  = 'password not match criteria';
           }
     
-          if (!values.gender) {
+          if (!formValues.gender) {
             errors.gender = 'Required';
           } 
     
-          if (!values.country) {
+          if (!formValues.country) {
             errors.country = 'Required';
           } 
     
-          if (!values.dob) {
+          if (!formValues.dob) {
             errors.dob = 'Required';
           } 
         return errors;
       }
-    });
     
 
-    
+
+  handleChange=(e)=>{
+    this.setState({[e.target.name]:e.target.value})
+    }
+    handleEmail=(e)=>{
+      const {formValues} = this.state;
+      let emailId=Object.assign({},formValues.UserLogin);
+      emailId.email=e.target.value;
+      this.setState({UserLogin:emailId});
+      }
+      
+      handlePassword=(e)=>{
+        const {formValues} = this.state;
+      let pass=Object.assign({},formValues.UserLogin);
+      pass.password=e.target.value;
+      this.setState({UserLogin:pass});
+      }
+  
+  render() 
+  { 
+    const { formValues, formErrors, isSubmitting } = this.state;
         return(
             <React.Fragment>
-            <form className="ui form" onSubmit={formik.handleSubmit}>
+            <form className="ui form" onSubmit={this.handleSubmit}>
                 <div className="equal width fields">
                     <div className="field">
                         <label htmlFor="firstname">First name</label>
                             <div className="ui fluid input">
                                  <input type="text" placeholder="First name" id="firstname"
-                                 name="firstname" value={formik.values.firstName} onChange={formik.handleChange} 
+                                 name="firstname" value={formValues.firstName} onChange={this.handleChange} 
                                  />
                              </div>
-                             {formik.touched.firstName && formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+                             {
+                               formErrors.firstname
+                             }
                     </div>
                     <div className="field">
                         <label htmlFor="lastname">Last name</label>
                             <div className="ui fluid input">
                                  <input type="text" placeholder="Last name" id="lastname"
-                                 name="lastname" value={formik.values.lastName} onChange={formik.handleChange} 
+                                 name="lastname" value={formValues.lastName} onChange={this.handleChange} 
                                  />
                             </div>
-                            { formik.touched.lastName && formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+                            
                             </div>
                 </div>
                 <div className="field">
                         <label htmlFor="mobileno">Mobile No.</label>
                             <div className="ui fluid input">
                                  <input type="text" placeholder="Mobile Number" id="mobileno"
-                                 name="mobileno" value={formik.values.mobileno} onChange={formik.handleChange} 
+                                 name="mobileno" value={formValues.mobileno} onChange={this.handleChange} 
                                  />
                             </div>   
-                            { formik.touched.mobileno && formik.errors.mobileno ? <div>{formik.errors.mobileno}</div> : null}
+                            
                     </div>
 
                     <div className="equal width fields">
@@ -106,19 +170,19 @@ import { useFormik } from 'formik';
                         <label htmlFor="email">Email Id</label>
                             <div className="ui fluid input">
                                  <input type="text" placeholder="Email Id" id="email"
-                                 name="email" value={formik.values.UserLogin.email} onChange={formik.handleChange} 
+                                 name="email" value={formValues.UserLogin.email} onChange={this.handleEmail} 
                                  />
                              </div>
-                             {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                             
                     </div>
                     <div className="field">
                         <label htmlFor="password">Password</label>
                             <div className="ui fluid input">
                                  <input type="password" placeholder="Password" id="password"
-                                 name="password" value={formik.values.UserLogin.password} onChange={formik.handleChange} 
+                                 name="password" value={formValues.UserLogin.password} onChange={this.handlePassword} 
                                  />
                             </div>
-                            {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                           
                             </div>
                 </div>
                 <div className="equal width fields">
@@ -127,42 +191,45 @@ import { useFormik } from 'formik';
                     <div className="equal width fields">
                     <div className="field">
                         <div className="ui radio checkbox">
-                            <input type="radio" id="male" name="gender" value="male" onChange={formik.handleChange} /> 
+                            <input type="radio" id="male" name="gender" value="male" onChange={this.handleChange} /> 
                             <label>Male</label>
                         </div>
                     </div>
                     <div className="field">
                         <div className="ui radio checkbox">
-                            <input type="radio" id="female" name="gender" value="female" onChange={formik.handleChange} />
+                            <input type="radio" id="female" name="gender" value="female" onChange={this.handleChange} />
                             <label>Female</label>
                         </div>
                     </div>
                     </div>
-                    {formik.touched.gender && formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
+                    
                 </div>
                 <div className="field">
-                <select id="country" name="country" onChange={formik.handleChange} >
+                <select id="country" name="country" onChange={this.handleChange} >
                 <option defaultValue="select country" selected disabled hidden>Select Country</option>
   <option value="india" name="country" >India</option>
   <option value="australia" name="country">Australia</option>
   <option value="newzeland" name="country">Newzeland</option>
   <option value="pakistan" name="country">Pakistan</option>
 </select>
-{formik.touched.country && formik.errors.country ? <div>{formik.errors.country}</div> : null}
+
                 </div>
                 </div>
             <div className="field">
                         <label htmlFor="form-subcomponent-shorthand-input-dob">DOB</label>
                             <div className="ui fluid input">
-                            <input type="date" id="dob" name="dob" value={formik.values.Dob} onChange={formik.handleChange} />
+                            <input type="date" id="dob" name="dob" value={formValues.Dob} onChange={this.handleChange} />
                </div>
-               {formik.touched.dob && formik.errors.dob ? <div>{formik.errors.dob}</div> : null}
+              
                </div>
-                <button className="ui fluid button" type="submit">Submit</button>
+                <button className="ui fluid button" type="submit" disabled={isSubmitting}>Submit
+                
+                </button>
             </form>
 
             
             </React.Fragment>
         )
+  }
     }
 export default Form;
