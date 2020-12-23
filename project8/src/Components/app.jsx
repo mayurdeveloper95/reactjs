@@ -9,17 +9,16 @@ class App extends Component{
         return (
             <React.Fragment>
                 <div className="ui container" style={{padding:"20px"}}>
-                <div className="ui two column grid">
-                    <div className="row">
-                        <div className="column">
+                <div className="ui grid">
+                    <div className=" eight wide computer eight wide tablet sixteen wide mobile column">
                        <SongList/>
                         </div>
-                        <div className="column">
+                        <div className="eight wide computer eight wide tablet sixteen wide mobile column">
                         <SelectedSong/>
                         </div>
-                    </div>
                 </div>
                 </div>
+              
                 </React.Fragment>
         )
     }
