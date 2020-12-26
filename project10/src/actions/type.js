@@ -1,0 +1,3 @@
+export const CREATE_DATA="CREATE_DATA";
+export const FETCH_DATA="FETCH_DATA";
+export const FETCH_AUTH_DATA="FETCH_AUTH_DATA";
