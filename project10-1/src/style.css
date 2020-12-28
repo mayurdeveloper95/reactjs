@@ -1,0 +1,18 @@
+.ui.card, .ui.cards>.card
+{
+    width:100%!important;
+}
+.ui.menu
+{
+    border-radius:0px!important;
+    margin:0px!important;
+}
+.masthead h1.ui.header {
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.ui.text.container
+{
+padding:9.6em 0em;
+}
