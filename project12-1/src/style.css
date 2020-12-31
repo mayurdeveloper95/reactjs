@@ -1,0 +1,59 @@
+.ui.container{padding:20px}
+.search-bg
+{
+    background-color:red;
+    padding:20px;
+    min-height:350px;
+}
+.ui.icon.input>i.icon:before {
+   
+    top: 50%!important;
+    color:white;
+   
+}
+.ui.icon.input
+{
+    width: 100%;
+}
+.ui.search
+{
+padding:0px 40px;
+}
+.ui.input>input{
+    border:none;
+    color:white!important;
+    font-size:18px;
+background: #fff0!important;
+    border-bottom:1px solid white;
+    border-radius: 0px;
+}
+.ui.icon.input>i.icon
+{
+    opacity:1;
+}
+
+.ui.input>input:active {
+    border-color:white;
+    background:#fff0;
+    color: rgba(0,0,0,.87);
+}
+.ui.input>input:focus {
+    border-color: white!important;
+}
+input[type="search"]::placeholder {
+    color: white!important;
+}
+.videoplay
+{
+    padding: 0px 20px;
+    margin-top: -250px;
+}
+.main-border
+{
+padding:15px;
+border:1px solid #efefef;
+box-shadow: 0px 0px 8px #00000026;
+}
+.ui.card {
+    margin: 40px 0px 40px 0px;
+}
