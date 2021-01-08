@@ -1,7 +1,6 @@
 import React from "react";
 const Videoplay=(props)=>{
     if(!props.playdata){return <h1>Loading</h1>}
-    console.log(props.playdata);
     let url=`https://www.youtube.com/embed/${props.playdata.id.videoId}`
 return(
     

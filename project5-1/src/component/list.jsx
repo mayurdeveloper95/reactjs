@@ -1,7 +1,6 @@
 import React from "react";
 
 const List =(props)=>{
-  console.log(props.item)
     if(!props.item){return <h1>Loading...</h1>}
 return(
 <React.Fragment>
@@ -19,7 +18,6 @@ return(
   {props.item.snippet.publishedAt}
   </div>
 </div>
-
 </React.Fragment>
 )
 }
